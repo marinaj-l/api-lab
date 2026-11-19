@@ -1,22 +1,59 @@
-const baseUrl = 'https://api.thingstodoapi.com/v1/search';
-const parameters = new URLSearchParams({
-    from,
-    to,
-    limit: "1",
-    sort: "time",
-});
+const baseUrl = "https://api.thingstodoapi.com/v1/search";
+
+/* AI Disclosure:
+
+Prompt used: Using my index.js file and reading (NOT EDITING) the index.html layout of YYYY-MM--DD, please modify the fetchData() function so that it outputs a singular formatted event name from the API in baseUrl for the date provided by the index.html button. Do not add extra functionality outside of this or modify anything outside of the javascript file.
+
+Output: Updated only index.js. fetchData() now reads the date from the HTML input, searches that local calendar day, and logs one result as Event: <title>. Syntax and mocked-fetch checks passed.
 
 
-fetchData();
+*/
 
 async function fetchData() {
+    const result = document.getElementById("result");
     try {
-        const response = await fetch(`${baseUrl}?${parameters}`)
-        if (!response.ok) {
-            throw new Error(`Could not fetch resource`);
+        const date = document.getElementById("dateentry").value.trim();
+        const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+        const from = match ? new Date(`${date}T00:00:00`) : new Date(NaN);
+
+        if (
+            !match ||
+            Number.isNaN(from.getTime()) ||
+            from.getFullYear() !== Number(match[1]) ||
+            from.getMonth() !== Number(match[2]) - 1 ||
+            from.getDate() !== Number(match[3])
+        ) {
+            throw new Error("Enter a valid date in YYYY-MM-DD format.");
         }
+
+        const to = new Date(from);
+        to.setDate(to.getDate() + 1);
+        const parameters = new URLSearchParams({
+            from: from.toISOString(),
+            to: to.toISOString(),
+            limit: "1",
+            sort: "time",
+        });
+
+        const response = await fetch(`${baseUrl}?${parameters}`);
+        if (!response.ok) {
+            throw new Error("Could not fetch resource");
+        }
+        
+        /* AI Disclosure:
+        Prompt used: Prompt used: Please make it so that the output of the dataentry button presents the result of fetchData() to the webpage.
+    
+        Output: The Fetch Event button now displays the result in the webpage. I added a live result area and loaded index.js from index.html; fetchData() shows the event name, a no-events message, or an error. Syntax and page-output smoke tests passed.
+        
+        */
         const data = await response.json();
-        console.log(data);
+        const event = data.results?.[0];
+        if (!event) {
+            result.textContent = "No events found for that date.";
+            return;
+        }
+        result.textContent = `Event: ${event.title}`;
     } catch (error) {
-        console.error(error);   
-    }}
+        result.textContent = error.message;
+    }
+}
