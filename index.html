@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Lab</title>
+    <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
 </head>
 <body>
+    <h1>2026 Date Search!</h1>
+    <h2>Instructions</h2>
+    <p>Enter a date in 2026 to search for events using the Things to Do API. Using the HolidayExplore API, it will also automatically check if that date coincides with a US holiday!</p>
     <input type="text" id="dateentry" placeholder="Format: YYYY-MM-DD">
     <button onclick="fetchData(); fetchUSHoliday(document.getElementById('dateentry').value.trim());">Fetch Event!</button>
     <!-- AI Disclosure:
@@ -16,5 +20,11 @@
     -->
     <p id="result" aria-live="polite"></p>
     <p id="holiday-result" aria-live="polite"></p>
+    <footer>
+        <h2>Contact</h2>
+            <address>
+                <p>Feel free to contact me at <a href="mailto:marinajl@msu.edu">marinajl@msu.edu</a> for any questions about the tool!</p>
+            </address>
+    </footer>
 </body>
 </html>
