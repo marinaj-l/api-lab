@@ -8,12 +8,13 @@
 </head>
 <body>
     <input type="text" id="dateentry" placeholder="Format: YYYY-MM-DD">
-    <button onclick="fetchData()">Fetch Event!</button>
+    <button onclick="fetchData(); fetchUSHoliday(document.getElementById('dateentry').value.trim());">Fetch Event!</button>
     <!-- AI Disclosure:
     Prompt used: Please make it so that the output of the dataentry button presents the result of fetchData() to the webpage.
     
     Output: The Fetch Event button now displays the result in the webpage. I added a live result area and loaded index.js from index.html; fetchData() shows the event name, a no-events message, or an error. Syntax and page-output smoke tests passed.
     -->
     <p id="result" aria-live="polite"></p>
+    <p id="holiday-result" aria-live="polite"></p>
 </body>
 </html>
