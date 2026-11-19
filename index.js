@@ -31,7 +31,6 @@ async function fetchData() {
         const parameters = new URLSearchParams({
             from: from.toISOString(),
             to: to.toISOString(),
-            limit: "1",
             sort: "time",
         });
 
@@ -46,7 +45,13 @@ async function fetchData() {
         
         */
         const data = await response.json();
-        const event = data.results?.[0];
+        /* AI Disclosure: 
+        Prompt used: Please make it so the event chosen by the fetchData() function is random out of the options available
+
+        Output: Updated index.js to remove the one-result limit and randomly select from the API results. Verified JavaScript syntax and tested that a mocked response selects the expected random event.
+        */
+        const events = Array.isArray(data.results) ? data.results : [];
+        const event = events[Math.floor(Math.random() * events.length)];
         if (!event) {
             result.textContent = "No events found for that date.";
             return;
