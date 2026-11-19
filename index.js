@@ -1,6 +1,10 @@
-const baseUrl = 'https://api.thingstodoapi.com/'
+const baseUrl = 'https://api.thingstodoapi.com/v1/search';
 const parameters = new URLSearchParams({
-      });
+    from,
+    to,
+    limit: "1",
+    sort: "time",
+});
 
 
 fetchData();
