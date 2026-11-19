@@ -105,3 +105,9 @@ async function fetchUSHoliday(date) {
     const holiday = holidays.find((entry) => entry.date === date);
     result.textContent = holiday ? holiday.name : "No US Holiday";
 }
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    document.getElementById("getoutput").click();
+  }
+});

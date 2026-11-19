@@ -12,7 +12,7 @@
     <h2>Instructions</h2>
     <p>Enter a date in 2026 to search for events using the Things to Do API. Using the HolidayExplore API, it will also automatically check if that date coincides with a US holiday!</p>
     <input type="text" id="dateentry" placeholder="Format: YYYY-MM-DD">
-    <button onclick="fetchData(); fetchUSHoliday(document.getElementById('dateentry').value.trim());">Fetch Event!</button>
+    <button id="getoutput" onclick="fetchData(); fetchUSHoliday(document.getElementById('dateentry').value.trim());">Fetch Event!</button>
     <!-- AI Disclosure:
     Prompt used: Please make it so that the output of the dataentry button presents the result of fetchData() to the webpage.
     
