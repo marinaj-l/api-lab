@@ -43,7 +43,7 @@ async function fetchData() {
 
         const response = await fetch(`${baseUrl}?${parameters}`);
         if (!response.ok) {
-            throw new Error("Could not fetch resource");
+            throw new Error("Could not fetch resource. Common when being rate limited by the API.");
         }
         /* AI Disclosure:
         Prompt used: Prompt used: Please make it so that the output of the dataentry button presents the result of fetchData() to the webpage.
