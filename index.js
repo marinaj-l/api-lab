@@ -25,6 +25,13 @@ async function fetchData() {
         ) {
             throw new Error("Enter a valid date in YYYY-MM-DD format.");
         }
+        /* AI Disclosure:
+        Prompt used: Please make it so that inputting a year that is not "2026" throws an error for both functions
+        Output: Added a 2026-only guard to both functions in index.js. fetchData() displays an error for other years; fetchUSHoliday() throws one. Syntax and mocked tests passed for both functions.
+        */
+        if (match[1] !== "2026") {
+            throw new Error("Only dates in 2026 are supported.");
+        }
 
         const to = new Date(from);
         to.setDate(to.getDate() + 1);
@@ -72,6 +79,10 @@ Syntax and mocked lookup checks passed. I couldn’t verify against the live API
 
 async function fetchUSHoliday(date) {
     const result = document.getElementById("holiday-result");
+    if (typeof date !== "string" || date.slice(0, 4) !== "2026") {
+        throw new Error("Only dates in 2026 are supported.");
+    }
+
     const response = await fetch("https://holidayexplore.com/api/v1/holidays?country=US");
     if (!response.ok) {
         throw new Error("Could not fetch US holidays.");
