@@ -11,7 +11,7 @@
     <h1>2026 Event Search!</h1>
     <main>
         <h2>Instructions</h2>
-        <p>Enter a date in 2026 to search for events using the Things to Do API. Using the HolidayExplore API, it will also automatically check if that date coincides with a US holiday!</p>
+        <p>Enter a date in 2026 to search for events using the Things to Do API. Using the HolidayExplore API, it will also automatically check if that date coincides with a US holiday stored on their server!</p>
         <input type="text" id="dateentry" placeholder="Format: YYYY-MM-DD">
         <button id="getoutput" onclick="fetchData(); fetchUSHoliday(document.getElementById('dateentry').value.trim());">Fetch Event!</button>
         <!-- AI Disclosure:
@@ -23,6 +23,11 @@
         <p id="holiday-result" aria-live="polite"></p>
     </main>
     <footer>
+        <h2>APIs used:</h2>
+        <ul>
+            <li><a href="https://thingstodoapi.com/" target="_blank" rel="noopener noreferrer">Things to Do API</a></li>
+            <li><a href="https://holidayexplore.com/" target="_blank" rel="noopener noreferrer">HolidayExplore API</a></li>
+        </ul>
         <h2>Contact</h2>
             <address>
                 <p>Feel free to contact me at <a href="mailto:marinajl@msu.edu">marinajl@msu.edu</a> for any questions about the tool!</p>
