@@ -45,3 +45,7 @@ button {
 #result, #holiday-result {
     color: #006837;
 }
+
+li {
+    margin-bottom: 0.5rem;
+}
